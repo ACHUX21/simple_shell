@@ -9,10 +9,11 @@ char *findenv_value(const char *name)
 {
     int i = 0;
     char *keyname;
-
+    char *buffer;
     while (environ[i])
     {
-        keyname = strtok(environ[i], "=");
+        buffer = strdup(environ[i]);
+        keyname = strtok(buffer, "=");
         if (strcmp(keyname, name) == 0)
             return (strtok(NULL, "\n"));
         i++;
@@ -31,8 +32,6 @@ char *fullcmd(char *cmd)
     char *spath;
     char *path = findenv_value("PATH");
 
-    struct stat st;
-
     spath = strtok(path, ":");
     while (spath)
     {
@@ -40,7 +39,7 @@ char *fullcmd(char *cmd)
         strcpy(fullcmd, spath);
         strcat(fullcmd, "/");
         strcat(fullcmd, cmd);
-        if (stat(fullcmd, &st) == 0)
+        if (access(fullcmd, R_OK) == 0)
             return (fullcmd);
         free(fullcmd);
         spath = strtok(NULL, ":");
