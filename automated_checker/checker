@@ -195,9 +195,6 @@ function print_diff()
 	$ECHO -n "(status)["
 	$CAT $EXPECTED_STATUS
 	$ECHO -e "]\n"
-
-	$ECHO "Environment:"
-	$CAT $ENV_TMP_FILE | $GREP -v "LS_COLORS"
 }
 
 ################################################################################

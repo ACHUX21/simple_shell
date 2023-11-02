@@ -17,6 +17,7 @@ char *findenv_value(const char *name);
 char **translate_array(char *buffer);
 int set_env(const char *name, const char *value, int or);
 char *fullcmd(char *cmd);
+ssize_t read_command(char **buffer, size_t *buffer_size);
 
 /* free memory leak*/
 void free_array(char **array);

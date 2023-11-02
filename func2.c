@@ -16,14 +16,13 @@ void free_array(char **array)
 /**
  * 
 */
-char **translate_array(char *buffer)
+char **translate_array(char *buffer) // buf == " "
 {
     char **arr;
     char *cmd;
     int i = 0;
 
-
-	arr = malloc(sizeof(char *) * 1024);
+	arr = malloc(sizeof(char *) * 2048);
     if (!arr)
     {
         free(arr);

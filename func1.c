@@ -8,7 +8,7 @@
 char *findenv_value(const char *name)
 {
     int i = 0;
-    char *keyname = NULL;
+    char *keyname;
 
     while (environ[i])
     {
