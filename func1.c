@@ -44,11 +44,15 @@ char *fullcmd(char *cmd)
 		strcpy(fullcmd, spath);
 		strcat(fullcmd, "/");
 		strcat(fullcmd, cmd);
-		if (access(fullcmd, R_OK) == 0)
+		if (access(fullcmd, X_OK) == 0)
+		{
+			free(path);
 			return (fullcmd);
+		}
 		free(fullcmd);
 		spath = strtok(NULL, ":");
 	}
+	free(path);
 	return (cmd);
 }
 /**

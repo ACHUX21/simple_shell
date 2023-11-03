@@ -13,6 +13,7 @@ extern char **environ;
 #include <limits.h>
 #include <sys/stat.h>
 
+
 char *findenv_value(const char *name);
 char **translate_array(char *buffer);
 int set_env(const char *name, const char *value, int or);

@@ -24,12 +24,7 @@ char **translate_array(char *buffer)
 	char *cmd;
 	int i = 0;
 
-	arr = malloc(sizeof(char *) * 2048);
-	if (!arr)
-	{
-		free(arr);
-		return (NULL);
-	}
+	arr = malloc(sizeof(char *) * 1024);
 
 	cmd = strtok(buffer, " \n\t");
 	while (cmd != NULL)
