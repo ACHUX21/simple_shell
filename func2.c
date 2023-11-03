@@ -14,20 +14,22 @@ void free_array(char **array)
 	free(array);
 }
 /**
- * 
+ * translate_array - translate the array
+ * @buffer: the array to translate
+ * Return: the array to translate
 */
-char **translate_array(char *buffer) // buf == " "
+char **translate_array(char *buffer)
 {
-    char **arr;
-    char *cmd;
-    int i = 0;
+	char **arr;
+	char *cmd;
+	int i = 0;
 
 	arr = malloc(sizeof(char *) * 2048);
-    if (!arr)
-    {
-        free(arr);
-        return (NULL);
-    }
+	if (!arr)
+	{
+		free(arr);
+		return (NULL);
+	}
 
 	cmd = strtok(buffer, " \n\t");
 	while (cmd != NULL)
@@ -37,8 +39,11 @@ char **translate_array(char *buffer) // buf == " "
 		i++;
 	}
 	arr[i] = NULL;
-    return (arr);
+	return (arr);
 }
+/**
+ * printenv - print the environment
+*/
 void printenv(void)
 {
 	while (*environ)

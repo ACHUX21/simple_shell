@@ -1,5 +1,4 @@
 #include "main.h"
-
 /**
  * findenv_value - find the environment value associated
  * @name: the name of the environment variable
@@ -8,8 +7,8 @@
 char *findenv_value(const char *name)
 {
 	int i = 0;
-	char *keyname;
-	char *buffer, *value;
+	char *keyname, *buffer, *value;
+
 	while (environ[i])
 	{
 		buffer = strdup(environ[i]);
@@ -23,7 +22,7 @@ char *findenv_value(const char *name)
 		free(buffer);
 		i++;
 	}
-	return NULL;
+	return (NULL);
 }
 
 /**
@@ -74,7 +73,7 @@ int set_env(const char *name, const char *value, int or)
 			if (or)
 			{
 				keyname = malloc(len + strlen(value) + 2);
-				if(!keyname)
+				if (!keyname)
 					return (-1);
 				strcpy(keyname, name);
 				strcat(keyname, "=");
@@ -94,7 +93,9 @@ int set_env(const char *name, const char *value, int or)
 	return (0);
 }
 /**
- * 
+ * unset_env - remove the environment
+ * @name: the name of the environment
+ * Return: 0 on success and -1 on failure
 */
 int unset_env(const char *name)
 {
@@ -109,7 +110,7 @@ int unset_env(const char *name)
 		if (strncmp(environ[i], name, len) == 0)
 		{
 			keyname = malloc(len + 1);
-			if(!keyname)
+			if (!keyname)
 				return (-1);
 			strcpy(keyname, name);
 			environ[i] = keyname;
