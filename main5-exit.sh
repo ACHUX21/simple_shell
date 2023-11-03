@@ -1,8 +1,8 @@
 #!/bin/bash
 
-for i in $(ls automated_checker/tests/simple_shell_0.2/); do
+for i in $(ls automated_checker/tests/simple_shell_exit/); do
     echo -e "\e[31m$i\e[0m"
-    ./automated_checker/checker ./hsh ./automated_checker/tests/simple_shell_0.2/$i
+    ./automated_checker/checker ./hsh ./automated_checker/tests/simple_shell_exit/$i
     echo
     echo "================================================================ ============================================================================================="
     echo "================================================================ ============================================================================================="

@@ -39,3 +39,11 @@ char **translate_array(char *buffer) // buf == " "
 	arr[i] = NULL;
     return (arr);
 }
+void printenv(void)
+{
+	while (*environ)
+	{
+		write(1, *environ, strlen(*environ)), write(1, "\n", 1);
+		environ++;
+	}
+}
