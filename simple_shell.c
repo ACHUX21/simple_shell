@@ -9,15 +9,22 @@ int main(int argc, char **argv)
 {
 	char **array, *buffer = NULL, *cmd;
 	size_t buffer_size;
-	int num_of_char, i, status, exit_code = 0;
+	int num_of_char, status;
 	pid_t pid;
 
+	(void)argc;
 	while (1)
 	{
-		write(STDIN_FILENO, "#cisfun$ ", 9);
+		if (isatty(0))
+		{
+			write(STDIN_FILENO, "#cisfun$ ", 9);
+		}
 		num_of_char = getline(&buffer, &buffer_size, stdin);
 		if (num_of_char == -1)
+		{
+			free(buffer);
 			exit(0);
+		}
 		array = translate_array(buffer);
 		if (array[0] == NULL)
 		{
@@ -39,19 +46,21 @@ int main(int argc, char **argv)
 		{
 			cmd = fullcmd(array[0]);
 			if (access(cmd, X_OK) != -1)
-				execve(cmd, array, environ), exit(18);
+			{
+				execve(cmd, array, environ);
+				break;
+			}
 			else
 			{
-				exit_code = 127;
 				fprintf(stderr, "%s: 1: %s: not found\n", argv[0], cmd);
-				exit(18);
+				exit(0);
 			}
 		}
 		else
 			wait(&status);
-		i = 0;
 		free(array);
 	}
-	free(buffer);
+	if (isatty(0))
+		free(buffer);
 	exit(127);
 }

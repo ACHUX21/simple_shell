@@ -32,7 +32,7 @@ char *findenv_value(const char *name)
 */
 char *fullcmd(char *cmd)
 {
-	int i = 0;
+
 	char *fullcmd;
 	char *spath;
 	char *path = findenv_value("PATH");
