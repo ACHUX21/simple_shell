@@ -21,6 +21,15 @@ char *fullcmd(char *cmd);
 ssize_t read_command(char **buffer, size_t *buffer_size);
 void printenv(void);
 void free_array(char **array);
+void error_not_found(char *cmd, char *argv);
+int another(char *array);
+int _atoi(char *s);
+void exit_error(int number, char *argv);
+void exit_error_char(char *number, char *argv);
+void print_number(int n);
+int _putchar(char c);
+int has_number(char *s);
+
 
 
 #endif

@@ -5,12 +5,12 @@
 */
 void free_array(char **array)
 {
-	int i;
+	int j;
 
 	if (!array)
 		return;
-	for (i = 0; array[i] != NULL; i++)
-		free(array[i]);
+	for (j = 0; array[j] != NULL; j++)
+		free(array[j]);
 	free(array);
 }
 /**
@@ -22,18 +22,18 @@ char **translate_array(char *buffer)
 {
 	char **arr;
 	char *cmd;
-	int i = 0;
+	int j = 0;
 
 	arr = malloc(sizeof(char *) * 1024);
 
 	cmd = strtok(buffer, " \n\t");
 	while (cmd != NULL)
 	{
-		arr[i] = cmd;
+		arr[j] = cmd;
 		cmd = strtok(NULL, " \n\t");
-		i++;
+		j++;
 	}
-	arr[i] = NULL;
+	arr[j] = NULL;
 	return (arr);
 }
 /**
@@ -46,4 +46,26 @@ void printenv(void)
 		write(1, *environ, strlen(*environ)), write(1, "\n", 1);
 		environ++;
 	}
+}
+/**
+ * _atoi -  Convert a string to an integer
+ * @s: String to convert
+ * Return: integer
+ */
+
+int _atoi(char *s)
+{
+	int sign = 1, j = 0;
+	unsigned int res = 0;
+
+	while (!(s[j] <= '9' && s[j] >= '0') && s[j] != '\0')
+	{
+		if (s[j] == '-')
+			sign *= -1;
+		j++;
+	}
+	while (s[j] <= '9' && (s[j] >= '0' && s[j] != '\0'))
+		res = (res * 10) + (s[j] - '0'), j++;
+	res *= sign;
+	return (res);
 }
