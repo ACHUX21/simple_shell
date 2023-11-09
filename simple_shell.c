@@ -20,7 +20,10 @@ int main(int argc, char **argv)
 		(num_of_char == -1) ? (free(buffer), exit(0)) : (void)0;
 		array = translate_array(buffer);
 		if (!array[0])
+		{
+			free(array);
 			continue;
+		}
 		if (!strcmp(array[0], "exit"))
 		{
 			exiting_advance(array, &exiting, argv[0]);

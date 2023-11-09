@@ -34,11 +34,6 @@ char **translate_array(char *buffer)
 		j++;
 	}
 	arr[j] = NULL;
-	if (!arr[0])
-	{
-		free(arr);
-		return (NULL);
-	}
 	return (arr);
 }
 /**
