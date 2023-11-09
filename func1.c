@@ -38,12 +38,12 @@ char *fullcmd(char *cmd)
 	char *path = findenv_value("PATH");
 
 	spath = strtok(path, ":");
+	if (spath == NULL)
+		return (cmd);
 	while (spath)
 	{
 		fullcmd = malloc(strlen(spath) + strlen(cmd) + 2);
-		strcpy(fullcmd, spath);
-		strcat(fullcmd, "/");
-		strcat(fullcmd, cmd);
+		strcpy(fullcmd, spath), strcat(fullcmd, "/"), strcat(fullcmd, cmd);
 		if (access(fullcmd, X_OK) == 0)
 		{
 			free(path);
@@ -83,6 +83,7 @@ int set_env(const char *name, const char *value, int or)
 				strcat(keyname, "=");
 				strcat(keyname, value);
 				environ[i] = keyname;
+				free(keyname);
 				return (0);
 			}
 			return (0);
@@ -94,6 +95,7 @@ int set_env(const char *name, const char *value, int or)
 	strcat(keyname, value);
 	environ[i] = keyname;
 	environ[i + 1] = NULL;
+	free(keyname);
 	return (0);
 }
 /**
