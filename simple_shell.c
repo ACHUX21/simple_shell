@@ -12,7 +12,7 @@ int main(int argc, char **argv)
 	size_t buffer_size;
 	pid_t pid = 0;
 
-	while (1)
+	for (;;)
 	{
 		if (isatty(0))
 			write(STDIN_FILENO, "<achux21> ", 10);
