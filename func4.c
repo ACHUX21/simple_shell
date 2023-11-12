@@ -8,6 +8,7 @@ void error_not_found(char *cmd, char *argv)
 {
 	write(STDERR_FILENO, argv, strlen(argv));
 	write(STDERR_FILENO, ": 1: ", 5);
+
 	write(STDERR_FILENO, cmd, strlen(cmd));
 	write(STDERR_FILENO, ": not found\n", 12);
 }
