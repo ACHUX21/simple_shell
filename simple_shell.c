@@ -1,7 +1,11 @@
 #include "main.h"
 /**
  * saverinos - main part
- *
+ * @cmd: The full command
+ * @array: array of arguments
+ * @exiting: a pointer to exit
+ * @argv: name of the program
+ * Return: 0 or 1
 */
 int saverinos(char **array, char *cmd, int *exiting, char *argv)
 {
