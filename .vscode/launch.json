@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/achux21/ALX/bU/simple_shell",
-      "program": "/home/achux21/ALX/bU/simple_shell/build/Debug/outDebug",
+      "cwd": "/home/achux21/ALX/simple_shell",
+      "program": "/home/achux21/ALX/simple_shell/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

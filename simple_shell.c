@@ -29,20 +29,23 @@ int main(int argc, char **argv)
 			exiting_advance(array, &exiting, argv[0]);
 			break;
 		}
-		cmd = fullcmd(array[0]);
-		if (cmd == NULL)
-		{
-			error_not_found(array[0], argv[0]), exiting = 127;
-			continue;
-		}
 		pid = fork();
 		if (pid == 0)
-			saver(array, cmd), exit(0);
+		{
+			cmd = fullcmd(array[0]);
+			if (strcmp(array[0], "env") == 0 || access(cmd, X_OK) != -1)
+			{
+				saver(array, cmd);
+				break;
+			}
+			else
+				error_not_found(cmd, argv[0]), exiting = 127, exit(exiting);
+		}
 		else
 			wait_child(&exiting);
 		free(array), (void)argc;
 	}
-	free(buffer);
+	isatty(0) ? free(buffer) : (void)0;
 	if (exiting < 0)
 		exit_error(exiting, argv[0]), exiting = 2;
 	exit(exiting);
@@ -54,9 +57,9 @@ int main(int argc, char **argv)
 */
 void saver(char **array, char *cmd)
 {
-		if (strcmp(array[0], "env") == 0)
-			printenv();
-		else
-			execve(cmd, array, environ);
-		free(array);
+	if (strcmp(array[0], "env") == 0)
+		printenv();
+	else
+		execve(cmd, array, environ);
+	free(array);
 }
