@@ -37,6 +37,8 @@ char *fullcmd(char *cmd)
 	char *spath;
 	char *path = findenv_value("PATH");
 
+	if (access(cmd, X_OK) == 0)
+		return (cmd);
 	spath = strtok(path, ":");
 	if (spath == NULL)
 		return (cmd);
@@ -53,7 +55,7 @@ char *fullcmd(char *cmd)
 		spath = strtok(NULL, ":");
 	}
 	free(path);
-	return (cmd);
+	return (NULL);
 }
 /**
  * set_env - set the environment variable associated
