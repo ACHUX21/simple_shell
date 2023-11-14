@@ -10,6 +10,7 @@
 char *_strtok(char *str, const char *delim)
 {
 static char *token = NULL;
+char *start;
 if (str != NULL)
 {
     token = str;
@@ -19,12 +20,12 @@ else if (token == NULL)
     return (NULL);
 }
 
-char *start = token;
+*start = token;
 token = strpbrk(token, delim);
 if (token != NULL)
 {
     *token = '\0';
-    *token++;
+    token++;
 }
 return (start);
 }
