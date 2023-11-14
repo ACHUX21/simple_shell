@@ -9,23 +9,25 @@
 
 char *_strtok(char *str, const char *delim)
 {
-static char *token = NULL;
+static char *token;
 char *start;
+
+token = NULL;
 if (str != NULL)
 {
-    token = str;
+	token = str;
 }
 else if (token == NULL)
 {
-    return (NULL);
+	return (NULL);
 }
 
-start = token;
+*start = token;
 token = strpbrk(token, delim);
 if (token != NULL)
 {
-    *token = '\0';
-    token++;
+	*token = '\0';
+	token++;
 }
 return (start);
 }
