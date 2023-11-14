@@ -20,7 +20,7 @@ else if (token == NULL)
     return (NULL);
 }
 
-*start = token;
+start = token;
 token = strpbrk(token, delim);
 if (token != NULL)
 {
